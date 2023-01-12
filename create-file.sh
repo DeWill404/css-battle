@@ -20,4 +20,4 @@ template="# Actual Code
 \`\`\`html
 \`\`\`"
 
-echo "$template" > "$new_filename"
+echo "$template" > "${new_battlename}/${new_filename}"
