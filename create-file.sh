@@ -21,3 +21,4 @@ template="# Actual Code
 \`\`\`"
 
 echo "$template" > "${new_battlename}/${new_filename}"
+nano "${new_battlename}/${new_filename}"
