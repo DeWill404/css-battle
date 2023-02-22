@@ -18,8 +18,14 @@
  * then call minify method with code as string parameter
  * use backtick(`) to create string inorder to preserve new-line
  * Then copy the generater output
+ * 
+ * 
+ * Added Functionality to copy output to clipboard
+ * !! But you have click on page in mentioned delay(2 sec default)
+ * 
  */
-function minify(code) {
+function minify(code, copyDelay = 2000) {
+  
   /** 1) Remove New line */
   code = code.replaceAll(/\n\s*/g, "");
 
@@ -88,6 +94,18 @@ function minify(code) {
   /** 6) Remove extra spaces */
   code = code.replaceAll(/:\s+/g, ":");
   code = code.replaceAll(/\s+{/g, "{");
+  
+  
+  if (navigator) {
+  	console.log(`!! Click on page for text to get copied in ${copyDelay/1000} seconds !!`);
+  	setTimeout(() => {
+	  	navigator.clipboard.writeText(code).then(function() {
+		  console.log('!! Copying to clipboard was successful !!');
+		}, function(err) {
+		  console.error('!! Could not copy text: ', err);
+		});
+  	}, copyDelay);
+  }
 
   return code;
 }
